@@ -1,6 +1,6 @@
 # ComicJailbreak
 
-ComciJailbreak introduces a comic-based jailbreak dataset to evaluate whether MLLMs uphold safety policy when harmful goals are embedded in visual narrative.
+ComicJailbreak introduces a comic-based jailbreak dataset to evaluate whether MLLMs uphold safety policy when harmful goals are embedded in visual narrative.
 
 ## Dataset 
 ### Dataset Creation
@@ -10,6 +10,12 @@ pip install -r requirements.txt
 
 python create_dataset.py --type article
 ```
+
+- You can extend the dataset by creating a `csv` file that looks like this:
+
+| Article | Speech | Instruction | Message | Code |
+| --- | --- | --- | --- | --- |
+| Your prompt | ... | ... | ... | ... | 
 
 ## Remarks
 We have released the ComicJailbreak dataset, and will provide the inference and evaluation code when they are ready. Stay tuned...

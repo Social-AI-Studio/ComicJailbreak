@@ -1,1 +1,12 @@
+# environment file
+.venv/
+
+# byte-compiled folders
+__pycache__/
+
+# datasets & responses
 dataset/
+meme_templates/
+meme_images/
+model_responses/
+evaluated/

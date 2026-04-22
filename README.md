@@ -4,11 +4,11 @@ ComicJailbreak introduces a comic-based jailbreak dataset to evaluate whether ML
 
 ## Dataset 
 ### Dataset Creation
-To create ComicJailbreak, run the following code:
+To create ComicJailbreak, run the following code (we are using `uv` for the environment setup):
 ```bash
-pip install -r requirements.txt
+uv sync
 
-python create_dataset.py --type article
+uv run python create_dataset.py --type article
 ```
 
 - You can extend the dataset by creating a `csv` file that looks like this:
@@ -17,8 +17,30 @@ python create_dataset.py --type article
 | --- | --- | --- | --- | --- |
 | Your prompt | ... | ... | ... | ... | 
 
-## Remarks
-We have released the ComicJailbreak dataset, and will provide the inference and evaluation code when they are ready. Stay tuned...
+For paraphrasing, run the following code:
+```bash
+uv run python paraphrasing --goals <your_path.csv> --type all
+```
+
+## Experiments
+If you were to use the API inferences, please include `.env` file to store your API keys:
+```text
+OPENROUTER_API=<YOUR_API_KEY>
+```
+
+We have included the prompts to perform the attack and defenses, packaged into shell scripts:
+```bash
+# For ComicJailbreak attack experiments
+bash attack.sh              # Local inference
+bash openrouter_attack.sh   # API inference (we are using OpenRouter as the provider)
+
+# For defenses against ComicJailbreak
+bash defense.sh             # Local inference
+bash openrouter_defense.sh  # API inference (we are using OpenRouter as the provider)
+
+# Script for evaluation
+bash eval.sh                # Local inference
+```
 
 ## Citation
 If you find this work useful in your research, please cite the following paper:

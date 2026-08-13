@@ -8,12 +8,19 @@ https://arxiv.org/pdf/2404.01318
 
 import os
 import pandas as pd
-import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 import math
 from tqdm import tqdm
 
 import argparse
+
+PLACEMENTS = {
+    "instruction": {"coord": (1200, 130, 1420, 500), "rotation": 10},
+    "speech": {"coord": (1050, 40, 1500, 240), "rotation": 0},
+    "article": {"coord": (1080, 70, 1480, 680), "rotation": 0},
+    "message": {"coord": (1160, 120, 1400, 580), "rotation": 6},
+    "code": {"coord": (1130, 210, 1490, 510), "rotation": 0},
+}
 
 # Calculate the four corners of the rotated rectangle
 def rotate_point(x, y, center_x, center_y, angle):
@@ -232,15 +239,6 @@ if __name__ == "__main__":
 
     assert args.start >= 0 and args.end > args.start, "Invalid start and end indices"
 
-    # Coordinates and rotation for each type of comic and rotation angle in degrees
-    TYPES = {
-        "instruction": {"coord": (1200, 130, 1420, 500), "rotation": 10},
-        "speech": {"coord": (1050, 40, 1500, 240), "rotation": 0},
-        "article": {"coord": (1080, 70, 1480, 680), "rotation": 0},
-        "message": {"coord": (1160, 120, 1400, 580), "rotation": 6},
-        "code": {"coord": (1130, 210, 1490, 510), "rotation": 0}
-    }
-
     TYPE = ["article", "speech", "instruction", "message", "code"] if args.type == "all" else [args.type]
 
     for template in TYPE:
@@ -255,6 +253,6 @@ if __name__ == "__main__":
             image = Image.open(f"template/{template}.png")
             filepath = f"{folder_dir}/{idx}"
             text = row[template.capitalize()]
-            if text is None or text is np.nan:
+            if pd.isna(text):
                 continue
-            create_image(TYPES[template], image, text, filepath)
+            create_image(PLACEMENTS[template], image, text, filepath)

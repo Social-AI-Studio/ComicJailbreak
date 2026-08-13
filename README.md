@@ -42,6 +42,8 @@ bash openrouter_defense.sh  # API inference (we are using OpenRouter as the prov
 bash eval.sh                # Local inference
 ```
 
+The component, visual-structure, and independent harm-recognition ablations are documented in [docs/ablation_experiment.md](docs/ablation_experiment.md).
+
 ## Citation
 If you find this work useful in your research, please cite the following paper:
 ```bibtex

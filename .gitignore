@@ -6,7 +6,12 @@ __pycache__/
 
 # datasets & responses
 dataset/
+template_panels/
+ablation_images/
 meme_templates/
 meme_images/
 model_responses/
 evaluated/
+ablation_responses/
+ablation_evaluated/
+ablation_analysis/
